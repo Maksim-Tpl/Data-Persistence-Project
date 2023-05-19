@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class MenuUiHandler : MonoBehaviour
 {
-    public Text PlayerNameInput;
+    [SerializeField]Text PlayerNameInput;
     // Start is called before the first frame update
     public void StartGame()
     {
@@ -31,8 +31,5 @@ Application.Quit();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

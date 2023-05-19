@@ -11,9 +11,11 @@ public class MainManager : MonoBehaviour
     public int LineCount = 6;
     public Rigidbody Ball;
 
+    public Text ScoreText;
+
     public Text CurrentPlayerName;
     public Text BestPlayerNameAndScore;
-    public Text ScoreText;
+    
     public GameObject GameOverText;
 
     
@@ -48,7 +50,7 @@ public class MainManager : MonoBehaviour
             }
         }
 
-        CurrentPlayerName.text = PlayerDataHandle.Instance.PlayerName;
+        CurrentPlayerName.text = PlayerDataHandler.instance.playerName;
 
         SetBestPlayer();
     }
@@ -80,7 +82,7 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        PlayerDataHandler.Instance.Score = m_Points;
+        PlayerDataHandler.instance.score = m_Points;
         ScoreText.text = $"Score : {m_Points}";
     }
 
@@ -93,11 +95,11 @@ public class MainManager : MonoBehaviour
 
     private void CheckBestPlayer()
     {
-        int CurrentScore = PlayerDataHandler.Instance.Score;
+        int CurrentScore = PlayerDataHandler.instance.score;
 
         if (CurrentScore > BestScore)
         {
-            BestPlayer = PlayerDataHandler.Instance.PlayerName;
+            BestPlayer = PlayerDataHandler.instance.playerName;
             BestScore = CurrentScore;
 
             BestPlayerNameAndScore.text = $"Best Score - {BestPlayer}: {BestScore}";

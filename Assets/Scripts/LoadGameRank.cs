@@ -8,13 +8,15 @@ using System.IO;
 public class LoadGameRank : MonoBehaviour
 {
     public Text BestPlayerName;
+
+
     private static int BestScore;
     private static string BestPlayer;
 
 
     private void Awake()
     {
-        LoadGameRank();
+        LoadActualGameRank();
     }
 
     private void SetBestPlayer()
@@ -30,35 +32,29 @@ public class LoadGameRank : MonoBehaviour
         }
     }
 
-    public void LoadGameRank()
+    public void LoadActualGameRank()
     {
         string path = Application.persistentDataPath + "/savefile.json";
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            Data saveData = JsonUtility.FromJson<SaveData>(json);
-            BestPlayer = data.BestPlayer;
+            SaveData data = JsonUtility.FromJson<SaveData>(json);  
+
+
+            BestPlayer = data.TheBestPlayer;
             BestScore = data.HighiestScore;
             SetBestPlayer();
         }
+        
     }
 
 
-    [System.Serializable] class SaveData
+    [System.Serializable] 
+    class SaveData
     {
         public int HighiestScore;
         public string TheBestPlayer;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
